@@ -8,6 +8,11 @@ var choiceAccepted = []string{
 }
 
 func main() {
+
+}
+
+func Greeting() string {
+	return "Hello, choose your tools : \n"
 }
 
 func GetChoices() string {

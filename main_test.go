@@ -10,6 +10,15 @@ var configAccepted = []string{
 	"2 ngnix",
 }
 
+func TestGreeting(t *testing.T) {
+	mainf := Greeting()
+	want := "Hello, choose your tools : \n"
+
+	if mainf != want {
+		t.Errorf("The greetings don't reach")
+	}
+}
+
 func TestChoices(t *testing.T) {
 	mainf := GetChoices()
 	want := strings.Join(configAccepted, " ")
