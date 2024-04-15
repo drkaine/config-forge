@@ -1,12 +1,17 @@
 package main
 
+import "strings"
+
 func main() {
 }
 
 func Choices() string {
-	choices := "1 apache 2 ngnix"
+	choiceAccepted := []string{
+		"1 apache",
+		"2 ngnix",
+	}
 
-	return choices
+	return strings.Join(choiceAccepted, " ")
 }
 
 func ChoiceResponded(choice string) string {
