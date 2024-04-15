@@ -11,7 +11,7 @@ var configAccepted = []string{
 }
 
 func TestChoices(t *testing.T) {
-	mainf := Choices()
+	mainf := GetChoices()
 	want := strings.Join(configAccepted, " ")
 
 	if mainf != want {
@@ -19,9 +19,9 @@ func TestChoices(t *testing.T) {
 	}
 }
 
-func TestWrongChoiceResponded(t *testing.T) {
+func TestWrongAnalyseResponse(t *testing.T) {
 	choose := "0"
-	mainf := ChoiceResponded(choose)
+	mainf := AnalyseResponse(choose)
 	want := "Wrong choice, choose 1 apache 2 ngnix"
 
 	if mainf != want {
@@ -29,9 +29,9 @@ func TestWrongChoiceResponded(t *testing.T) {
 	}
 }
 
-func TestGoodChoiceResponded(t *testing.T) {
+func TestGoodAnalyseResponse(t *testing.T) {
 	choose := "1 apache"
-	mainf := ChoiceResponded(choose)
+	mainf := AnalyseResponse(choose)
 	want := "Now go to prepare the configuration"
 
 	if mainf != want {

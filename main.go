@@ -10,11 +10,11 @@ var choiceAccepted = []string{
 func main() {
 }
 
-func Choices() string {
+func GetChoices() string {
 	return strings.Join(choiceAccepted, " ")
 }
 
-func ChoiceResponded(choice string) string {
+func AnalyseResponse(choice string) string {
 	if InArray(choice, choiceAccepted) {
 		return "Now go to prepare the configuration"
 	}
