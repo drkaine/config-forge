@@ -11,7 +11,7 @@ var configAccepted = []string{
 }
 
 func TestGreeting(t *testing.T) {
-	mainf := Greeting()
+	mainf := PresentGreeting()
 	want := "Hello, choose your tools : \n"
 
 	if mainf != want {
@@ -20,7 +20,7 @@ func TestGreeting(t *testing.T) {
 }
 
 func TestChoices(t *testing.T) {
-	mainf := GetChoices()
+	mainf := PresentChoices()
 	want := strings.Join(configAccepted, " ")
 
 	if mainf != want {

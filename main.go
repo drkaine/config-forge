@@ -11,11 +11,11 @@ func main() {
 
 }
 
-func Greeting() string {
+func PresentGreeting() string {
 	return "Hello, choose your tools : \n"
 }
 
-func GetChoices() string {
+func PresentChoices() string {
 	return strings.Join(choiceAccepted, " ")
 }
 
