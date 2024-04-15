@@ -37,3 +37,13 @@ func TestWrongChoiceResponded(t *testing.T) {
 		t.Errorf("Good choice return")
 	}
 }
+
+func TestGoodChoiceResponded(t *testing.T) {
+	choose := "1 apache"
+	mainf := ChoiceResponded(choose)
+	want := "Now go to prepare the configuration"
+
+	if mainf != want {
+		t.Errorf("Good choice return")
+	}
+}
