@@ -1,6 +1,12 @@
 package main
 
-import "strings"
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"os"
+	"strings"
+)
 
 var choiceAccepted = []string{
 	"1 apache",
@@ -8,7 +14,9 @@ var choiceAccepted = []string{
 }
 
 func main() {
-
+	fmt.Println(PresentGreeting())
+	fmt.Println(PresentChoices())
+	ListeningResponse(os.Stdin)
 }
 
 func PresentGreeting() string {
@@ -17,6 +25,12 @@ func PresentGreeting() string {
 
 func PresentChoices() string {
 	return strings.Join(choiceAccepted, " ")
+}
+
+func ListeningResponse(reader io.Reader) string {
+	bufReader := bufio.NewReader(reader)
+	response, _ := bufReader.ReadString('\n')
+	return response
 }
 
 func AnalyseResponse(choice string) string {

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"strings"
 	"testing"
 )
@@ -45,6 +46,17 @@ func TestGoodAnalyseResponse(t *testing.T) {
 
 	if mainf != want {
 		t.Errorf("Good choice return")
+	}
+}
+
+func TestAskQuestion(t *testing.T) {
+	input := "1 apache"
+	reader := bytes.NewReader([]byte(input))
+
+	response := ListeningResponse(reader)
+
+	if response != input {
+		t.Errorf("The response %q isn't the same of the input %q", input, response)
 	}
 }
 
