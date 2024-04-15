@@ -47,3 +47,19 @@ func TestGoodAnalyseResponse(t *testing.T) {
 		t.Errorf("Good choice return")
 	}
 }
+
+func TestInArray(t *testing.T) {
+	want := "1 apache"
+
+	if !InArray(want, choiceAccepted) {
+		t.Errorf("Not in array")
+	}
+}
+
+func TestNotInArray(t *testing.T) {
+	want := "0 apache"
+
+	if InArray(want, choiceAccepted) {
+		t.Errorf("In array")
+	}
+}
