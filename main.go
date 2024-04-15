@@ -2,24 +2,19 @@ package main
 
 import "strings"
 
+var choiceAccepted = []string{
+	"1 apache",
+	"2 ngnix",
+}
+
 func main() {
 }
 
 func Choices() string {
-	choiceAccepted := []string{
-		"1 apache",
-		"2 ngnix",
-	}
-
 	return strings.Join(choiceAccepted, " ")
 }
 
 func ChoiceResponded(choice string) string {
-	choiceAccepted := []string{
-		"1 apache",
-		"2 ngnix",
-	}
-
 	if InArray(choice, choiceAccepted) {
 		return "Now go to prepare the configuration"
 	}
