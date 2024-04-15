@@ -31,17 +31,9 @@ func TestChoices(t *testing.T) {
 func TestWrongChoiceResponded(t *testing.T) {
 	choose := "0"
 	mainf := ChoiceResponded(choose)
+	want := "Wrong choice, choose 1 apache 2 ngnix"
 
-	if InArray(mainf, configAccepted) {
+	if mainf != want {
 		t.Errorf("Good choice return")
 	}
-}
-
-func InArray(search string, target []string) bool {
-	for _, value := range target {
-		if value == search {
-			return true
-		}
-	}
-	return false
 }
