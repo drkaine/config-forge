@@ -1,22 +1,13 @@
 package main
 
 import (
-	"os"
 	"strings"
 	"testing"
 )
 
-var configAccepted []string
-
-func TestMain(m *testing.M) {
-	configAccepted = []string{
-		"1 apache",
-		"2 ngnix",
-	}
-
-	code := m.Run()
-
-	os.Exit(code)
+var configAccepted = []string{
+	"1 apache",
+	"2 ngnix",
 }
 
 func TestChoices(t *testing.T) {
