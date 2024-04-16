@@ -9,9 +9,10 @@ import (
 )
 
 const (
-	Hello                = "Hello, choose your tools : "
+	Hello                = "Hello, choose your tools at configure : "
 	PrepareConfiguration = "Now go to prepare the configuration"
 	WrongChoice          = "Uncorrect choice !"
+	AskNameFile          = "How would you name the configuration file ? :"
 )
 
 var choiceAccepted = []string{
@@ -29,9 +30,12 @@ func Runner() {
 	answer := ListeningResponse(os.Stdin)
 	analyseResponse := AnalyseResponse(answer)
 	fmt.Println(analyseResponse)
+
 	if analyseResponse == WrongChoice {
 		Runner()
 	}
+
+	fmt.Println(AskNameFile)
 
 	config := apache{
 		name: answer,

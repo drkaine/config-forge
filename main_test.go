@@ -20,26 +20,26 @@ var configAccepted = []string{
 }
 
 func TestPresentChoices(t *testing.T) {
-	mainf := PresentChoices()
+	function := PresentChoices()
 	want := strings.Join(configAccepted, "")
 
-	if mainf != want {
+	if function != want {
 		t.Errorf(WrongChoiceError)
 	}
 }
 
 func TestWrongAnalyseResponse(t *testing.T) {
-	mainf := AnalyseResponse(BadInput)
+	function := AnalyseResponse(BadInput)
 
-	if mainf != WrongChoice {
+	if function != WrongChoice {
 		t.Errorf(GoodChoiceError)
 	}
 }
 
 func TestGoodAnalyseResponse(t *testing.T) {
-	mainf := AnalyseResponse(ApacheInput)
+	function := AnalyseResponse(ApacheInput)
 
-	if mainf != PrepareConfiguration {
+	if function != PrepareConfiguration {
 		t.Errorf(WrongChoiceError)
 	}
 }
