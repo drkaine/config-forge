@@ -37,11 +37,12 @@ func Runner() {
 
 	fmt.Println(AskNameFile)
 
-	config := apache{
-		name: answer,
-	}
+	name := ListeningResponse(os.Stdin)
 
-	fmt.Println(config.name)
+	configurator := InstanciationConfigurator(name)
+
+	fmt.Println(configurator.name)
+
 }
 
 func PresentChoices() string {
@@ -72,4 +73,12 @@ func InArray(search string, target []string) bool {
 
 type apache struct {
 	name string
+}
+
+func InstanciationConfigurator(name string) apache {
+	configurator := apache{
+		name: name,
+	}
+
+	return configurator
 }

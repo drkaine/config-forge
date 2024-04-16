@@ -12,6 +12,7 @@ const (
 	ApacheInput      = "apache\n"
 	BadInput         = "bad"
 	Name             = "default"
+	NameInput        = "default-test.conf"
 )
 
 var configAccepted = []string{
@@ -73,5 +74,13 @@ func TestStructureConfiguration(t *testing.T) {
 
 	if config.name != Name {
 		t.Errorf("Error on name struct")
+	}
+}
+
+func TestInstanciationConfigurator(t *testing.T) {
+	configurator := InstanciationConfigurator(NameInput)
+
+	if configurator.name != NameInput {
+		t.Errorf("The name of the configurator is %q and need to be %q", configurator.name, NameInput)
 	}
 }
