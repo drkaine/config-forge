@@ -32,7 +32,7 @@ func TestPresentChoices(t *testing.T) {
 func TestWrongAnalyseResponse(t *testing.T) {
 	choose := "0"
 	mainf := AnalyseResponse(choose)
-	want := "Wrong choice, choose : " + strings.Join(configAccepted, "")
+	want := "Uncorrect choice !"
 
 	if mainf != want {
 		t.Errorf("Good choice return")

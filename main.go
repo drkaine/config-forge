@@ -21,7 +21,11 @@ func Runner() {
 	fmt.Println(PresentGreeting())
 	fmt.Println(PresentChoices())
 	answer := ListeningResponse(os.Stdin)
-	fmt.Println(AnalyseResponse(answer))
+	analyseResponse := AnalyseResponse(answer)
+	fmt.Println(analyseResponse)
+	if analyseResponse == "Uncorrect choice !" {
+		Runner()
+	}
 }
 
 func PresentGreeting() string {
@@ -42,7 +46,7 @@ func AnalyseResponse(choice string) string {
 	if InArray(choice, choiceAccepted) {
 		return "Now go to prepare the configuration"
 	}
-	return "Wrong choice, choose : " + PresentChoices()
+	return "Uncorrect choice !"
 }
 
 func InArray(search string, target []string) bool {
