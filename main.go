@@ -42,7 +42,7 @@ func AnalyseResponse(choice string) string {
 	if InArray(choice, choiceAccepted) {
 		return "Now go to prepare the configuration"
 	}
-	return "Wrong choice, choose 1 apache 2 ngnix"
+	return "Wrong choice, choose : " + PresentChoices()
 }
 
 func InArray(search string, target []string) bool {
