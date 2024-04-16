@@ -6,18 +6,17 @@ import (
 	"testing"
 )
 
+const (
+	WrongChoiceError = "Wrong choice"
+	GoodChoiceError  = "Good choice"
+	ApacheInput      = "apache\n"
+	BadInput         = "bad"
+	Name             = "default"
+)
+
 var configAccepted = []string{
-	"apache\n",
+	ApacheInput,
 	"ngnix\n",
-}
-
-func TestPresentGreeting(t *testing.T) {
-	mainf := PresentGreeting()
-	want := "Hello, choose your tools : \n"
-
-	if mainf != want {
-		t.Errorf("The greetings don't reach")
-	}
 }
 
 func TestPresentChoices(t *testing.T) {
@@ -25,63 +24,54 @@ func TestPresentChoices(t *testing.T) {
 	want := strings.Join(configAccepted, "")
 
 	if mainf != want {
-		t.Errorf("The choices don't correspond")
+		t.Errorf(WrongChoiceError)
 	}
 }
 
 func TestWrongAnalyseResponse(t *testing.T) {
-	choose := "0"
-	mainf := AnalyseResponse(choose)
-	want := "Uncorrect choice !"
+	mainf := AnalyseResponse(BadInput)
 
-	if mainf != want {
-		t.Errorf("Good choice return")
+	if mainf != WrongChoice {
+		t.Errorf(GoodChoiceError)
 	}
 }
 
 func TestGoodAnalyseResponse(t *testing.T) {
-	choose := "apache\n"
-	mainf := AnalyseResponse(choose)
-	want := "Now go to prepare the configuration"
+	mainf := AnalyseResponse(ApacheInput)
 
-	if mainf != want {
-		t.Errorf("Wrong choice return")
+	if mainf != PrepareConfiguration {
+		t.Errorf(WrongChoiceError)
 	}
 }
 
 func TestListeningResponse(t *testing.T) {
-	input := "apache\n"
-	reader := bytes.NewReader([]byte(input))
+	reader := bytes.NewReader([]byte(ApacheInput))
 
 	response := ListeningResponse(reader)
 
-	if response != input {
-		t.Errorf("The response %q isn't the same of the input %q", input, response)
+	if response != ApacheInput {
+		t.Errorf("The response %q isn't the same of the input %q", ApacheInput, response)
 	}
 }
 
 func TestInArray(t *testing.T) {
-	want := "apache\n"
-
-	if !InArray(want, choiceAccepted) {
+	if !InArray(ApacheInput, choiceAccepted) {
 		t.Errorf("Not in array")
 	}
 }
 
 func TestNotInArray(t *testing.T) {
-	want := "0 apache"
-
-	if InArray(want, choiceAccepted) {
+	if InArray(BadInput, choiceAccepted) {
 		t.Errorf("In array")
 	}
 }
 
 func TestStructureConfiguration(t *testing.T) {
 	config := apache{
-		name: "apache",
+		name: Name,
 	}
 
-	if config.name != "apache" {
+	if config.name != Name {
 		t.Errorf("Error on name struct")
 	}
 }

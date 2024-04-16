@@ -8,6 +8,12 @@ import (
 	"strings"
 )
 
+const (
+	Hello                = "Hello, choose your tools : "
+	PrepareConfiguration = "Now go to prepare the configuration"
+	WrongChoice          = "Uncorrect choice !"
+)
+
 var choiceAccepted = []string{
 	"apache\n",
 	"ngnix\n",
@@ -18,12 +24,12 @@ func main() {
 }
 
 func Runner() {
-	fmt.Println(PresentGreeting())
+	fmt.Println(Hello)
 	fmt.Println(PresentChoices())
 	answer := ListeningResponse(os.Stdin)
 	analyseResponse := AnalyseResponse(answer)
 	fmt.Println(analyseResponse)
-	if analyseResponse == "Uncorrect choice !" {
+	if analyseResponse == WrongChoice {
 		Runner()
 	}
 
@@ -32,10 +38,6 @@ func Runner() {
 	}
 
 	fmt.Println(config.name)
-}
-
-func PresentGreeting() string {
-	return "Hello, choose your tools : \n"
 }
 
 func PresentChoices() string {
@@ -50,9 +52,9 @@ func ListeningResponse(reader io.Reader) string {
 
 func AnalyseResponse(choice string) string {
 	if InArray(choice, choiceAccepted) {
-		return "Now go to prepare the configuration"
+		return PrepareConfiguration
 	}
-	return "Uncorrect choice !"
+	return WrongChoice
 }
 
 func InArray(search string, target []string) bool {
