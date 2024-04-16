@@ -7,8 +7,8 @@ import (
 )
 
 var configAccepted = []string{
-	"1 apache\n",
-	"2 ngnix\n",
+	"apache\n",
+	"ngnix\n",
 }
 
 func TestPresentGreeting(t *testing.T) {
@@ -40,7 +40,7 @@ func TestWrongAnalyseResponse(t *testing.T) {
 }
 
 func TestGoodAnalyseResponse(t *testing.T) {
-	choose := "1 apache\n"
+	choose := "apache\n"
 	mainf := AnalyseResponse(choose)
 	want := "Now go to prepare the configuration"
 
@@ -50,7 +50,7 @@ func TestGoodAnalyseResponse(t *testing.T) {
 }
 
 func TestListeningResponse(t *testing.T) {
-	input := "1 apache\n"
+	input := "apache\n"
 	reader := bytes.NewReader([]byte(input))
 
 	response := ListeningResponse(reader)
@@ -61,7 +61,7 @@ func TestListeningResponse(t *testing.T) {
 }
 
 func TestInArray(t *testing.T) {
-	want := "1 apache\n"
+	want := "apache\n"
 
 	if !InArray(want, choiceAccepted) {
 		t.Errorf("Not in array")
@@ -73,5 +73,15 @@ func TestNotInArray(t *testing.T) {
 
 	if InArray(want, choiceAccepted) {
 		t.Errorf("In array")
+	}
+}
+
+func TestStructureConfiguration(t *testing.T) {
+	config := apache{
+		name: "apache",
+	}
+
+	if config.name != "apache" {
+		t.Errorf("Error on name struct")
 	}
 }

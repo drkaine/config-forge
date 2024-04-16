@@ -9,8 +9,8 @@ import (
 )
 
 var choiceAccepted = []string{
-	"1 apache\n",
-	"2 ngnix\n",
+	"apache\n",
+	"ngnix\n",
 }
 
 func main() {
@@ -26,6 +26,12 @@ func Runner() {
 	if analyseResponse == "Uncorrect choice !" {
 		Runner()
 	}
+
+	config := apache{
+		name: answer,
+	}
+
+	fmt.Println(config.name)
 }
 
 func PresentGreeting() string {
@@ -56,4 +62,8 @@ func InArray(search string, target []string) bool {
 		}
 	}
 	return false
+}
+
+type apache struct {
+	name string
 }
