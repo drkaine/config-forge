@@ -9,14 +9,19 @@ import (
 )
 
 var choiceAccepted = []string{
-	"1 apache",
-	"2 ngnix",
+	"1 apache\n",
+	"2 ngnix\n",
 }
 
 func main() {
+	Runner()
+}
+
+func Runner() {
 	fmt.Println(PresentGreeting())
 	fmt.Println(PresentChoices())
-	ListeningResponse(os.Stdin)
+	answer := ListeningResponse(os.Stdin)
+	fmt.Println(AnalyseResponse(answer))
 }
 
 func PresentGreeting() string {
@@ -24,7 +29,7 @@ func PresentGreeting() string {
 }
 
 func PresentChoices() string {
-	return strings.Join(choiceAccepted, " ")
+	return strings.Join(choiceAccepted, "")
 }
 
 func ListeningResponse(reader io.Reader) string {

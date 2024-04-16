@@ -7,11 +7,11 @@ import (
 )
 
 var configAccepted = []string{
-	"1 apache",
-	"2 ngnix",
+	"1 apache\n",
+	"2 ngnix\n",
 }
 
-func TestGreeting(t *testing.T) {
+func TestPresentGreeting(t *testing.T) {
 	mainf := PresentGreeting()
 	want := "Hello, choose your tools : \n"
 
@@ -20,9 +20,9 @@ func TestGreeting(t *testing.T) {
 	}
 }
 
-func TestChoices(t *testing.T) {
+func TestPresentChoices(t *testing.T) {
 	mainf := PresentChoices()
-	want := strings.Join(configAccepted, " ")
+	want := strings.Join(configAccepted, "")
 
 	if mainf != want {
 		t.Errorf("The choices don't correspond")
@@ -40,7 +40,7 @@ func TestWrongAnalyseResponse(t *testing.T) {
 }
 
 func TestGoodAnalyseResponse(t *testing.T) {
-	choose := "1 apache"
+	choose := "1 apache\n"
 	mainf := AnalyseResponse(choose)
 	want := "Now go to prepare the configuration"
 
@@ -49,8 +49,8 @@ func TestGoodAnalyseResponse(t *testing.T) {
 	}
 }
 
-func TestAskQuestion(t *testing.T) {
-	input := "1 apache"
+func TestListeningResponse(t *testing.T) {
+	input := "1 apache\n"
 	reader := bytes.NewReader([]byte(input))
 
 	response := ListeningResponse(reader)
@@ -61,7 +61,7 @@ func TestAskQuestion(t *testing.T) {
 }
 
 func TestInArray(t *testing.T) {
-	want := "1 apache"
+	want := "1 apache\n"
 
 	if !InArray(want, choiceAccepted) {
 		t.Errorf("Not in array")
