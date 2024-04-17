@@ -10,8 +10,9 @@ const (
 	GoodChoiceError  = "Good choice"
 	ApacheInput      = "apache"
 	BadInput         = "bad"
-	Name             = "default"
-	NameInput        = "default-test.conf"
+	Name             = "default-test.conf"
+	ServerName       = "test.net"
+	DocumentRoot     = "/var/www/monsite.com/public_html"
 )
 
 var configAccepted = []string{
@@ -59,18 +60,28 @@ func TestNotInArray(t *testing.T) {
 
 func TestStructureConfiguration(t *testing.T) {
 	config := apache{
-		name: Name,
+		name:         Name,
+		serverName:   ServerName,
+		documentRoot: DocumentRoot,
 	}
 
 	if config.name != Name {
-		t.Errorf("Error on name struct")
+		t.Errorf("Error on name struct apache")
+	}
+
+	if config.serverName != ServerName {
+		t.Errorf("Error on serverName struct apache")
+	}
+
+	if config.documentRoot != DocumentRoot {
+		t.Errorf("Error on documentRoot struct apache")
 	}
 }
 
 func TestInstanciationConfig(t *testing.T) {
-	config := InstanciationConfig(NameInput)
+	config := InstanciationConfig(Name, ServerName, DocumentRoot)
 
-	if config.name != NameInput {
-		t.Errorf("The name of the config is %q and need to be %q", config.name, NameInput)
+	if config.name != Name {
+		t.Errorf("The name of the config is %q and need to be %q", config.name, Name)
 	}
 }

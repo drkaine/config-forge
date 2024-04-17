@@ -14,6 +14,8 @@ const (
 	PrepareConfiguration = "Now go to prepare the configuration"
 	WrongChoice          = "Uncorrect choice !"
 	AskNameFile          = "How would you name the configuration file ? :"
+	AskServerName        = "How would you name of the server ? :"
+	AskDocumentRoot      = "How would you name the configuration file ? :"
 )
 
 func main() {
@@ -35,7 +37,15 @@ func Runner() {
 
 	name := ListeningResponse(os.Stdin)
 
-	config := InstanciationConfig(name)
+	fmt.Println(AskServerName)
+
+	serverName := ListeningResponse(os.Stdin)
+
+	fmt.Println(AskDocumentRoot)
+
+	documentRoot := ListeningResponse(os.Stdin)
+
+	config := InstanciationConfig(name, serverName, documentRoot)
 
 	fmt.Println(config.name)
 
@@ -64,12 +74,16 @@ func InArray(search string, target []string) bool {
 }
 
 type apache struct {
-	name string
+	name         string
+	serverName   string
+	documentRoot string
 }
 
-func InstanciationConfig(name string) apache {
+func InstanciationConfig(name string, serverName string, documentRoot string) apache {
 	config := apache{
-		name: name,
+		name:         name,
+		serverName:   serverName,
+		documentRoot: documentRoot,
 	}
 
 	return config
