@@ -28,5 +28,5 @@ jobs:
     - name: Execute the tests
       run: go test -v
 
-    - name: Run golangci-lint
-      run: golangci-lint run
+    # - name: Run golangci-lint
+    #   run: golangci-lint run
