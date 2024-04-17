@@ -67,10 +67,10 @@ func TestStructureConfiguration(t *testing.T) {
 	}
 }
 
-func TestInstanciationConfigurator(t *testing.T) {
-	configurator := InstanciationConfigurator(NameInput)
+func TestInstanciationConfig(t *testing.T) {
+	config := InstanciationConfig(NameInput)
 
-	if configurator.name != NameInput {
-		t.Errorf("The name of the configurator is %q and need to be %q", configurator.name, NameInput)
+	if config.name != NameInput {
+		t.Errorf("The name of the config is %q and need to be %q", config.name, NameInput)
 	}
 }

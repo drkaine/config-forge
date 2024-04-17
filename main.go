@@ -35,9 +35,9 @@ func Runner() {
 
 	name := ListeningResponse(os.Stdin)
 
-	configurator := InstanciationConfigurator(name)
+	config := InstanciationConfig(name)
 
-	fmt.Println(configurator.name)
+	fmt.Println(config.name)
 
 }
 
@@ -67,10 +67,10 @@ type apache struct {
 	name string
 }
 
-func InstanciationConfigurator(name string) apache {
-	configurator := apache{
+func InstanciationConfig(name string) apache {
+	config := apache{
 		name: name,
 	}
 
-	return configurator
+	return config
 }
