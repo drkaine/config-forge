@@ -9,16 +9,12 @@ import (
 )
 
 const (
+	AcceptedChoice       = "apache\n ngnix"
 	Hello                = "Hello, choose your tools at configure : "
 	PrepareConfiguration = "Now go to prepare the configuration"
 	WrongChoice          = "Uncorrect choice !"
 	AskNameFile          = "How would you name the configuration file ? :"
 )
-
-var choiceAccepted = []string{
-	"apache\n",
-	"ngnix\n",
-}
 
 func main() {
 	Runner()
@@ -26,7 +22,7 @@ func main() {
 
 func Runner() {
 	fmt.Println(Hello)
-	fmt.Println(PresentChoices())
+	fmt.Println(AcceptedChoice)
 	answer := ListeningResponse(os.Stdin)
 	analyseResponse := AnalyseResponse(answer)
 	fmt.Println(analyseResponse)
@@ -45,10 +41,6 @@ func Runner() {
 
 }
 
-func PresentChoices() string {
-	return strings.Join(choiceAccepted, "")
-}
-
 func ListeningResponse(reader io.Reader) string {
 	bufReader := bufio.NewReader(reader)
 	response, _ := bufReader.ReadString('\n')
@@ -56,7 +48,7 @@ func ListeningResponse(reader io.Reader) string {
 }
 
 func AnalyseResponse(choice string) string {
-	if InArray(choice, choiceAccepted) {
+	if InArray(choice, strings.Split(AcceptedChoice, "\n")) {
 		return PrepareConfiguration
 	}
 	return WrongChoice

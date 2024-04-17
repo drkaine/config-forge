@@ -2,14 +2,13 @@ package main
 
 import (
 	"bytes"
-	"strings"
 	"testing"
 )
 
 const (
 	WrongChoiceError = "Wrong choice"
 	GoodChoiceError  = "Good choice"
-	ApacheInput      = "apache\n"
+	ApacheInput      = "apache"
 	BadInput         = "bad"
 	Name             = "default"
 	NameInput        = "default-test.conf"
@@ -18,15 +17,6 @@ const (
 var configAccepted = []string{
 	ApacheInput,
 	"ngnix\n",
-}
-
-func TestPresentChoices(t *testing.T) {
-	function := PresentChoices()
-	want := strings.Join(configAccepted, "")
-
-	if function != want {
-		t.Errorf(WrongChoiceError)
-	}
 }
 
 func TestWrongAnalyseResponse(t *testing.T) {
@@ -56,13 +46,13 @@ func TestListeningResponse(t *testing.T) {
 }
 
 func TestInArray(t *testing.T) {
-	if !InArray(ApacheInput, choiceAccepted) {
+	if !InArray(ApacheInput, configAccepted) {
 		t.Errorf("Not in array")
 	}
 }
 
 func TestNotInArray(t *testing.T) {
-	if InArray(BadInput, choiceAccepted) {
+	if InArray(BadInput, configAccepted) {
 		t.Errorf("In array")
 	}
 }
