@@ -72,6 +72,10 @@ func TestInstanciationConfig(t *testing.T) {
 	if config.path != ApachePath {
 		t.Errorf("Error on documentRoot struct apache")
 	}
+
+	if config.fileContent != "Hello world" {
+		t.Errorf("Error on documentRoot struct apache")
+	}
 }
 
 func TestCreateFile(t *testing.T) {
@@ -99,27 +103,26 @@ func TestCreateFile(t *testing.T) {
 }
 
 func TestEditFile(t *testing.T) {
-	filename := "testfile.txt"
+	config := InstanciationConfig(Name, ServerName, DocumentRoot)
 
-	err := EditFile(filename)
+	err := EditFile(config)
 	if err != nil {
 		t.Errorf("Erreur lors de la lecture du fichier : %v", err)
 		return
 	}
 
-	content, err := os.ReadFile(filename)
+	content, err := os.ReadFile(config.name)
 	if err != nil {
 		t.Errorf("Erreur lors de la lecture du fichier : %v", err)
 		return
 	}
 
-	expected := "Hello, World!\n"
-	if string(content) != expected {
-		t.Errorf("Contenu du fichier incorrect. Attendu: %s, Obtenu: %s", expected, string(content))
+	if string(content) != config.fileContent {
+		t.Errorf("Contenu du fichier incorrect. Attendu: %s, Obtenu: %s", config.fileContent, string(content))
 	}
 
 	defer func() {
-		if err := os.Remove(filename); err != nil {
+		if err := os.Remove(config.name); err != nil {
 			t.Errorf("Error on the delete of the file: %v", err)
 		}
 	}()

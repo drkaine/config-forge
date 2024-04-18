@@ -54,7 +54,7 @@ func Runner() {
 
 	fmt.Println(config.name)
 
-	er := EditFile(name)
+	er := EditFile(config)
 	fmt.Println(er)
 }
 
@@ -80,19 +80,21 @@ func InArray(search string, target []string) bool {
 	return false
 }
 
-type apache struct {
+type Apache struct {
 	name         string
 	serverName   string
 	documentRoot string
 	path         string
+	fileContent  string
 }
 
-func InstanciationConfig(name string, serverName string, documentRoot string) apache {
-	config := apache{
+func InstanciationConfig(name string, serverName string, documentRoot string) Apache {
+	config := Apache{
 		name:         name,
 		serverName:   serverName,
 		documentRoot: documentRoot,
 		path:         ApachePath,
+		fileContent:  "Hello world",
 	}
 
 	return config
@@ -107,14 +109,14 @@ func CreateFile(filename string) (*os.File, error) {
 	return file, nil
 }
 
-func EditFile(filename string) error {
-	file, err := CreateFile(filename)
+func EditFile(apache Apache) error {
+	file, err := CreateFile(apache.name)
 
 	if err != nil {
 		return err
 	}
 
-	_, err = file.WriteString("Hello, World!\n")
+	_, err = file.WriteString(apache.fileContent)
 	if err != nil {
 		return err
 	}
