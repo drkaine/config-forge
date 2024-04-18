@@ -95,6 +95,8 @@ func TestCreateFile(t *testing.T) {
 		t.Errorf("The file don't exist : %v", err)
 	}
 
+	defer file.Close()
+
 	defer func() {
 		if err := os.Remove(tmpFileName); err != nil {
 			t.Errorf("Error on the delete of the file: %v", err)
