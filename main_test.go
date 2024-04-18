@@ -83,26 +83,21 @@ func TestInstanciationConfig(t *testing.T) {
 }
 
 func TestCreateFile(t *testing.T) {
-	// Création d'un fichier temporaire pour le test
 	tmpFileName := "testfile.txt"
 
-	// Appel de la fonction à tester
 	err := CreateFile(tmpFileName)
 
-	// Vérifie si une erreur s'est produite lors de la création du fichier
 	if err != nil {
-		t.Errorf("Erreur lors de la création du fichier : %v", err)
+		t.Errorf("Error on the creation of the file : %v", err)
 	}
 
-	// Vérifie si le fichier existe
 	if _, err := os.Stat(tmpFileName); os.IsNotExist(err) {
-		t.Errorf("Le fichier n'a pas été créé : %v", err)
+		t.Errorf("The file don't exist : %v", err)
 	}
 
-	// Supprime le fichier temporaire après le test
 	defer func() {
 		if err := os.Remove(tmpFileName); err != nil {
-			t.Errorf("Erreur lors de la suppression du fichier temporaire : %v", err)
+			t.Errorf("Error on the delete of the file: %v", err)
 		}
 	}()
 }
