@@ -54,15 +54,11 @@ func TestNotInArray(t *testing.T) {
 	}
 }
 
-func TestStructureConfiguration(t *testing.T) {
-	config := apache{
-		name:         Name,
-		serverName:   ServerName,
-		documentRoot: DocumentRoot,
-	}
+func TestInstanciationConfig(t *testing.T) {
+	config := InstanciationConfig(Name, ServerName, DocumentRoot)
 
 	if config.name != Name {
-		t.Errorf("Error on name struct apache")
+		t.Errorf("The name of the config is %q and need to be %q", config.name, Name)
 	}
 
 	if config.serverName != ServerName {
@@ -72,13 +68,9 @@ func TestStructureConfiguration(t *testing.T) {
 	if config.documentRoot != DocumentRoot {
 		t.Errorf("Error on documentRoot struct apache")
 	}
-}
 
-func TestInstanciationConfig(t *testing.T) {
-	config := InstanciationConfig(Name, ServerName, DocumentRoot)
-
-	if config.name != Name {
-		t.Errorf("The name of the config is %q and need to be %q", config.name, Name)
+	if config.path != ApachePath {
+		t.Errorf("Error on documentRoot struct apache")
 	}
 }
 
