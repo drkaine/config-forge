@@ -85,9 +85,13 @@ func TestInstanciationConfig(t *testing.T) {
 func TestCreateFile(t *testing.T) {
 	tmpFileName := "testfile.txt"
 
-	err := CreateFile(tmpFileName)
+	file, err := CreateFile(tmpFileName)
 
 	if err != nil {
+		t.Errorf("Error on the creation of the file : %v", err)
+	}
+
+	if file == nil {
 		t.Errorf("Error on the creation of the file : %v", err)
 	}
 
@@ -97,6 +101,33 @@ func TestCreateFile(t *testing.T) {
 
 	defer func() {
 		if err := os.Remove(tmpFileName); err != nil {
+			t.Errorf("Error on the delete of the file: %v", err)
+		}
+	}()
+}
+
+func TestEditFile(t *testing.T) {
+	filename := "testfile.txt"
+
+	err := EditFile(filename)
+	if err != nil {
+		t.Errorf("Erreur lors de la lecture du fichier : %v", err)
+		return
+	}
+
+	content, err := os.ReadFile(filename)
+	if err != nil {
+		t.Errorf("Erreur lors de la lecture du fichier : %v", err)
+		return
+	}
+
+	expected := "Hello, World!\n"
+	if string(content) != expected {
+		t.Errorf("Contenu du fichier incorrect. Attendu: %s, Obtenu: %s", expected, string(content))
+	}
+
+	defer func() {
+		if err := os.Remove(filename); err != nil {
 			t.Errorf("Error on the delete of the file: %v", err)
 		}
 	}()

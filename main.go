@@ -20,6 +20,7 @@ const (
 	AskNameFile          = "How would you name the configuration file ? :"
 	AskServerName        = "Wath is the name of the server ? :"
 	AskDocumentRoot      = "What is the path to the document root of the project ? :"
+	ApachePath           = "/etc/apache2/sites-available/"
 )
 
 func main() {
@@ -53,7 +54,7 @@ func Runner() {
 
 	fmt.Println(config.name)
 
-	er := CreateFile(name)
+	er := EditFile(name)
 	fmt.Println(er)
 }
 
@@ -91,14 +92,29 @@ func InstanciationConfig(name string, serverName string, documentRoot string) ap
 		name:         name,
 		serverName:   serverName,
 		documentRoot: documentRoot,
-		path:         "/etc/apache2/sites-available/",
+		path:         ApachePath,
 	}
 
 	return config
 }
 
-func CreateFile(filename string) error {
+func CreateFile(filename string) (*os.File, error) {
 	file, err := os.Create(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	return file, nil
+}
+
+func EditFile(filename string) error {
+	file, err := CreateFile(filename)
+
+	if err != nil {
+		return err
+	}
+
+	_, err = file.WriteString("Hello, World!\n")
 	if err != nil {
 		return err
 	}
