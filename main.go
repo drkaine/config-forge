@@ -83,6 +83,7 @@ type apache struct {
 	name         string
 	serverName   string
 	documentRoot string
+	path         string
 }
 
 func InstanciationConfig(name string, serverName string, documentRoot string) apache {
@@ -90,6 +91,7 @@ func InstanciationConfig(name string, serverName string, documentRoot string) ap
 		name:         name,
 		serverName:   serverName,
 		documentRoot: documentRoot,
+		path:         "/etc/apache2/sites-available/",
 	}
 
 	return config
