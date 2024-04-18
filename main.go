@@ -8,14 +8,18 @@ import (
 	"strings"
 )
 
+var configAccepted = []string{
+	"apache",
+	"ngnix",
+}
+
 const (
-	AcceptedChoice       = "apache\n ngnix"
 	Hello                = "Hello, choose your tools at configure : "
 	PrepareConfiguration = "Now go to prepare the configuration"
 	WrongChoice          = "Uncorrect choice !"
 	AskNameFile          = "How would you name the configuration file ? :"
-	AskServerName        = "How would you name of the server ? :"
-	AskDocumentRoot      = "How would you name the configuration file ? :"
+	AskServerName        = "Wath is the name of the server ? :"
+	AskDocumentRoot      = "What is the path to the document root of the project ? :"
 )
 
 func main() {
@@ -24,7 +28,7 @@ func main() {
 
 func Runner() {
 	fmt.Println(Hello)
-	fmt.Println(AcceptedChoice)
+	fmt.Println(strings.Join(configAccepted, " "))
 	answer := ListeningResponse(os.Stdin)
 	analyseResponse := AnalyseResponse(answer)
 	fmt.Println(analyseResponse)
@@ -49,6 +53,8 @@ func Runner() {
 
 	fmt.Println(config.name)
 
+	er := CreateFile(name)
+	fmt.Println(er)
 }
 
 func ListeningResponse(reader io.Reader) string {
@@ -58,7 +64,7 @@ func ListeningResponse(reader io.Reader) string {
 }
 
 func AnalyseResponse(choice string) string {
-	if InArray(choice, strings.Split(AcceptedChoice, "\n")) {
+	if InArray(choice, configAccepted) {
 		return PrepareConfiguration
 	}
 	return WrongChoice
@@ -87,4 +93,14 @@ func InstanciationConfig(name string, serverName string, documentRoot string) ap
 	}
 
 	return config
+}
+
+func CreateFile(filename string) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	return nil
 }
