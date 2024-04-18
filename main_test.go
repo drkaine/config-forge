@@ -7,13 +7,28 @@ import (
 )
 
 const (
-	WrongChoiceError = "Wrong choice"
-	GoodChoiceError  = "Good choice"
-	ApacheInput      = "apache"
-	BadInput         = "bad"
-	Name             = "default-test.conf"
-	ServerName       = "test.net"
-	DocumentRoot     = "/var/www/monsite.com/public_html"
+	WrongChoiceError    = "Wrong choice"
+	GoodChoiceError     = "Good choice"
+	ApacheInput         = "apache"
+	BadInput            = "bad"
+	Name                = "default-test.conf"
+	ServerName          = "test.net"
+	DocumentRoot        = "/var/www/monsite.com/public_html"
+	ApacheConfigContent = `
+	<VirtualHost *:80>
+	    ServerName test.net
+	    ServerAlias www.test.net
+	    DocumentRoot /var/www/monsite.com/public_html
+
+	    <Directory /var/www/monsite.com/public_html>
+	        Options Indexes FollowSymLinks
+	        AllowOverride All
+	        Require all granted
+	    </Directory>
+
+	    ErrorLog ${APACHE_LOG_DIR}/monsite_error.log
+	    CustomLog ${APACHE_LOG_DIR}/monsite_access.log combined
+	</VirtualHost>`
 )
 
 func TestWrongAnalyseResponse(t *testing.T) {
@@ -73,7 +88,7 @@ func TestInstanciationConfig(t *testing.T) {
 		t.Errorf("Error on documentRoot struct apache")
 	}
 
-	if config.fileContent != "Hello world" {
+	if config.fileContent != ApacheConfig {
 		t.Errorf("Error on documentRoot struct apache")
 	}
 }
@@ -128,4 +143,20 @@ func TestEditFile(t *testing.T) {
 			t.Errorf("Error on the delete of the file: %v", err)
 		}
 	}()
+}
+
+func TestImplementConfigContent(t *testing.T) {
+	config := Apache{
+		name:         Name,
+		serverName:   ServerName,
+		documentRoot: DocumentRoot,
+		path:         ApachePath,
+		fileContent:  ApacheConfig,
+	}
+
+	config.ImplementConfigContent()
+
+	if config.fileContent != ApacheConfigContent {
+		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", ApacheConfigContent, config.fileContent)
+	}
 }

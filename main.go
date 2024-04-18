@@ -21,6 +21,21 @@ const (
 	AskServerName        = "Wath is the name of the server ? :"
 	AskDocumentRoot      = "What is the path to the document root of the project ? :"
 	ApachePath           = "/etc/apache2/sites-available/"
+	ApacheConfig         = `
+	<VirtualHost *:80>
+	    ServerName ServerNameInput
+	    ServerAlias ServerAliasInput
+	    DocumentRoot DocumentRootInput
+
+	    <Directory DocumentRootInput>
+	        Options Indexes FollowSymLinks
+	        AllowOverride All
+	        Require all granted
+	    </Directory>
+
+	    ErrorLog ${APACHE_LOG_DIR}/monsite_error.log
+	    CustomLog ${APACHE_LOG_DIR}/monsite_access.log combined
+	</VirtualHost>`
 )
 
 func main() {
@@ -80,6 +95,10 @@ func InArray(search string, target []string) bool {
 	return false
 }
 
+type Tool interface {
+	ImplementConfigContent()
+}
+
 type Apache struct {
 	name         string
 	serverName   string
@@ -88,13 +107,19 @@ type Apache struct {
 	fileContent  string
 }
 
+func (apache *Apache) ImplementConfigContent() {
+	apache.fileContent = strings.Replace(apache.fileContent, "ServerNameInput", apache.serverName, 1)
+	apache.fileContent = strings.Replace(apache.fileContent, "ServerAliasInput", "www."+apache.serverName, 1)
+	apache.fileContent = strings.Replace(apache.fileContent, "DocumentRootInput", apache.documentRoot, 2)
+}
+
 func InstanciationConfig(name string, serverName string, documentRoot string) Apache {
 	config := Apache{
 		name:         name,
 		serverName:   serverName,
 		documentRoot: documentRoot,
 		path:         ApachePath,
-		fileContent:  "Hello world",
+		fileContent:  ApacheConfig,
 	}
 
 	return config
