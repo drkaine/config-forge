@@ -11,7 +11,7 @@ const (
 	GoodChoiceError     = "Good choice"
 	ApacheInput         = "apache"
 	BadInput            = "bad"
-	Name                = "default-test.conf"
+	Name                = "default-test"
 	ServerName          = "test.net"
 	DocumentRoot        = "/var/www/monsite.com/public_html"
 	ApacheConfigContent = `
@@ -72,7 +72,7 @@ func TestNotInArray(t *testing.T) {
 func TestInstanciationConfig(t *testing.T) {
 	config := InstanciationConfig(Name, ServerName, DocumentRoot)
 
-	if config.name != Name {
+	if config.name != Name+".conf" {
 		t.Errorf("The name of the config is %q and need to be %q", config.name, Name)
 	}
 

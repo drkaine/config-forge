@@ -20,7 +20,7 @@ const (
 	AskNameFile          = "How would you name the configuration file ? :"
 	AskServerName        = "Wath is the name of the server ? :"
 	AskDocumentRoot      = "What is the path to the document root of the project ? :"
-	ApachePath           = "/etc/apache2/sites-available/"
+	ApachePath           = "/etc/apache2/sites-available"
 	ApacheConfig         = `
 	<VirtualHost *:80>
 	    ServerName ServerNameInput
@@ -67,6 +67,7 @@ func Runner() {
 
 	config := InstanciationConfig(name, serverName, documentRoot)
 
+	config.ImplementConfigContent()
 	fmt.Println(config.name)
 
 	er := EditFile(config)
@@ -76,7 +77,7 @@ func Runner() {
 func ListeningResponse(reader io.Reader) string {
 	bufReader := bufio.NewReader(reader)
 	response, _ := bufReader.ReadString('\n')
-	return response
+	return strings.TrimSpace(response)
 }
 
 func AnalyseResponse(choice string) string {
@@ -95,7 +96,7 @@ func InArray(search string, target []string) bool {
 	return false
 }
 
-type Tool interface {
+type Config interface {
 	ImplementConfigContent()
 }
 
@@ -115,7 +116,7 @@ func (apache *Apache) ImplementConfigContent() {
 
 func InstanciationConfig(name string, serverName string, documentRoot string) Apache {
 	config := Apache{
-		name:         name,
+		name:         name + ".conf",
 		serverName:   serverName,
 		documentRoot: documentRoot,
 		path:         ApachePath,
