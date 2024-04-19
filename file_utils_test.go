@@ -32,7 +32,7 @@ func TestCreateFile(t *testing.T) {
 }
 
 func TestEditFile(t *testing.T) {
-	config := InstanciationConfig(Name, ServerName, DocumentRoot)
+	config := InstanciationConfig(NAME_TEST, SERVER_NAME_TEST, DOCUMENT_ROOT_TEST)
 
 	err := EditFile(config)
 	if err != nil {

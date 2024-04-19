@@ -6,14 +6,14 @@ var configAccepted = []string{
 }
 
 const (
-	Hello                = "Hello, choose your tools at configure : "
-	PrepareConfiguration = "Now go to prepare the configuration"
-	WrongChoice          = "Uncorrect choice !"
-	AskNameFile          = "How would you name the configuration file ? :"
-	AskServerName        = "Wath is the name of the server ? :"
-	AskDocumentRoot      = "What is the path to the document root of the project ? :"
-	ApachePath           = "/etc/apache2/sites-available"
-	ApacheConfig         = `
+	HELLO_RETURN                 = "Hello, choose your tools at configure : "
+	PREPARE_CONFIGURATION_RETURN = "Now go to prepare the configuration"
+	WRONG_CHOICE_RETURN          = "Uncorrect choice !"
+	ASK_NAME_FILE                = "How would you name the configuration file ? :"
+	ASK_NAME_SERVER              = "Wath is the name of the server ? :"
+	ASK_DOCUMENT_ROOT_PATH       = "What is the path to the document root of the project ? :"
+	APACHE_PATH_REPOSITORY       = "/etc/apache2/sites-available"
+	APACHE_CONFIG_CONTENT        = `
 	<VirtualHost *:80>
 	    ServerName ServerNameInput
 	    ServerAlias ServerAliasInput

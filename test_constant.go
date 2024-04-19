@@ -1,14 +1,15 @@
 package main
 
 const (
-	WrongChoiceError    = "Wrong choice"
-	GoodChoiceError     = "Good choice"
-	ApacheInput         = "apache"
-	BadInput            = "bad"
-	Name                = "default-test"
-	ServerName          = "test.net"
-	DocumentRoot        = "/var/www/monsite.com/public_html"
-	ApacheConfigContent = `
+	WRONG_CHOICE_ERROR         = "Wrong choice"
+	GOOD_CHOICE_ERROR          = "Good choice"
+	APACHE_INPUT               = "apache"
+	BAD_INPUT                  = "bad"
+	NAME_TEST                  = "default-test"
+	NAME_FILE_TEST             = "default-test.conf"
+	SERVER_NAME_TEST           = "test.net"
+	DOCUMENT_ROOT_TEST         = "/var/www/monsite.com/public_html"
+	APACHE_CONFIG_CONTENT_TEST = `
 	<VirtualHost *:80>
 	    ServerName test.net
 	    ServerAlias www.test.net

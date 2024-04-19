@@ -14,7 +14,7 @@ func ListeningResponse(reader io.Reader) string {
 
 func AnalyseResponse(choice string) string {
 	if InArray(choice, configAccepted) {
-		return PrepareConfiguration
+		return PREPARE_CONFIGURATION_RETURN
 	}
-	return WrongChoice
+	return WRONG_CHOICE_RETURN
 }

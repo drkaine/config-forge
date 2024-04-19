@@ -5,13 +5,13 @@ import (
 )
 
 func TestInArray(t *testing.T) {
-	if !InArray(ApacheInput, configAccepted) {
+	if !InArray(APACHE_INPUT, configAccepted) {
 		t.Errorf("Not in array")
 	}
 }
 
 func TestNotInArray(t *testing.T) {
-	if InArray(BadInput, configAccepted) {
+	if InArray(BAD_INPUT, configAccepted) {
 		t.Errorf("In array")
 	}
 }

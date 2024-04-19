@@ -6,26 +6,26 @@ import (
 	"strings"
 )
 
-func Runner() {
-	fmt.Println(Hello)
+func Execute() {
+	fmt.Println(HELLO_RETURN)
 	fmt.Println(strings.Join(configAccepted, " "))
 	answer := ListeningResponse(os.Stdin)
 	analyseResponse := AnalyseResponse(answer)
 	fmt.Println(analyseResponse)
 
-	if analyseResponse == WrongChoice {
-		Runner()
+	if analyseResponse == WRONG_CHOICE_RETURN {
+		Execute()
 	}
 
-	fmt.Println(AskNameFile)
+	fmt.Println(ASK_NAME_FILE)
 
 	name := ListeningResponse(os.Stdin)
 
-	fmt.Println(AskServerName)
+	fmt.Println(ASK_NAME_SERVER)
 
 	serverName := ListeningResponse(os.Stdin)
 
-	fmt.Println(AskDocumentRoot)
+	fmt.Println(ASK_DOCUMENT_ROOT_PATH)
 
 	documentRoot := ListeningResponse(os.Stdin)
 

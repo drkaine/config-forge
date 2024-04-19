@@ -27,8 +27,8 @@ func InstanciationConfig(name string, serverName string, documentRoot string) Ap
 		name:         name + ".conf",
 		serverName:   serverName,
 		documentRoot: documentRoot,
-		path:         ApachePath,
-		fileContent:  ApacheConfig,
+		path:         APACHE_PATH_REPOSITORY,
+		fileContent:  APACHE_CONFIG_CONTENT,
 	}
 
 	return config
