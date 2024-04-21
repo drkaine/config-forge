@@ -13,7 +13,7 @@ func ListeningResponse(reader io.Reader) string {
 	return strings.TrimSpace(response)
 }
 
-func AnalyseResponse(choice string) string {
+func AnalyseChoice(choice string) string {
 	if InArray(choice, configs.ConfigAccepted) {
 		return configs.PREPARE_CONFIGURATION_RETURN
 	}

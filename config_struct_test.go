@@ -30,7 +30,7 @@ func TestInstanciationConfig(t *testing.T) {
 	}
 }
 
-func TestImplementConfigContent(t *testing.T) {
+func TestCustomiseConfigContent(t *testing.T) {
 	configu := configurator.Apache{
 		Name:         configs.NAME_TEST,
 		ServerName:   configs.SERVER_NAME_TEST,
@@ -39,7 +39,7 @@ func TestImplementConfigContent(t *testing.T) {
 		FileContent:  configs.APACHE_CONFIG_CONTENT,
 	}
 
-	configu.ImplementConfigContent()
+	configu.CustomiseConfigContent()
 
 	if configu.FileContent != configs.APACHE_CONFIG_CONTENT_TEST {
 		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_CONTENT_TEST, configu.FileContent)

@@ -17,10 +17,10 @@ func Execute() {
 	fmt.Println(configs.HELLO_RETURN)
 	fmt.Println(strings.Join(configs.ConfigAccepted, " "))
 	answer := utils.ListeningResponse(os.Stdin)
-	analyseResponse := utils.AnalyseResponse(answer)
-	fmt.Println(analyseResponse)
+	analyseChoice := utils.AnalyseChoice(answer)
+	fmt.Println(analyseChoice)
 
-	if analyseResponse == configs.WRONG_CHOICE_RETURN {
+	if analyseChoice == configs.WRONG_CHOICE_RETURN {
 		Execute()
 	}
 
@@ -38,7 +38,7 @@ func Execute() {
 
 	configu := configurator.InstanciationConfig(name, serverName, documentRoot)
 
-	configu.ImplementConfigContent()
+	configu.CustomiseConfigContent()
 	fmt.Println(configu.Name)
 
 	er := utils.EditFile(configu)

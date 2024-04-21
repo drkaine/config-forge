@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func CreateFile(filename string) (*os.File, error) {
+func createFile(filename string) (*os.File, error) {
 	file, err := os.Create(filename)
 	if err != nil {
 		return nil, err
@@ -15,7 +15,7 @@ func CreateFile(filename string) (*os.File, error) {
 }
 
 func EditFile(apache configurator.Apache) error {
-	file, err := CreateFile(apache.Name)
+	file, err := createFile(apache.Name)
 
 	if err != nil {
 		return err

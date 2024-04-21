@@ -6,7 +6,7 @@ import (
 )
 
 type Config interface {
-	ImplementConfigContent()
+	CustomiseConfigContent()
 }
 
 type Apache struct {
@@ -17,7 +17,7 @@ type Apache struct {
 	FileContent  string
 }
 
-func (apache *Apache) ImplementConfigContent() {
+func (apache *Apache) CustomiseConfigContent() {
 	apache.FileContent = strings.Replace(apache.FileContent, "ServerNameInput", apache.ServerName, 1)
 	apache.FileContent = strings.Replace(apache.FileContent, "ServerAliasInput", "www."+apache.ServerName, 1)
 	apache.FileContent = strings.Replace(apache.FileContent, "DocumentRootInput", apache.DocumentRoot, 2)

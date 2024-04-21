@@ -7,16 +7,16 @@ import (
 	"testing"
 )
 
-func TestWrongAnalyseResponse(t *testing.T) {
-	function := utils.AnalyseResponse(configs.BAD_INPUT)
+func TestWrongAnalyseChoice(t *testing.T) {
+	function := utils.AnalyseChoice(configs.BAD_INPUT)
 
 	if function != configs.WRONG_CHOICE_RETURN {
 		t.Errorf(configs.GOOD_CHOICE_ERROR)
 	}
 }
 
-func TestGoodAnalyseResponse(t *testing.T) {
-	function := utils.AnalyseResponse(configs.APACHE_INPUT)
+func TestGoodAnalyseChoice(t *testing.T) {
+	function := utils.AnalyseChoice(configs.APACHE_INPUT)
 
 	if function != configs.PREPARE_CONFIGURATION_RETURN {
 		t.Errorf(configs.WRONG_CHOICE_ERROR)
