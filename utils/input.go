@@ -1,7 +1,8 @@
-package main
+package utils
 
 import (
 	"bufio"
+	"config-forge/configs"
 	"io"
 	"strings"
 )
@@ -13,8 +14,8 @@ func ListeningResponse(reader io.Reader) string {
 }
 
 func AnalyseResponse(choice string) string {
-	if InArray(choice, configAccepted) {
-		return PREPARE_CONFIGURATION_RETURN
+	if InArray(choice, configs.ConfigAccepted) {
+		return configs.PREPARE_CONFIGURATION_RETURN
 	}
-	return WRONG_CHOICE_RETURN
+	return configs.WRONG_CHOICE_RETURN
 }

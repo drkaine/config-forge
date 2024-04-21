@@ -1,45 +1,47 @@
 package main
 
 import (
+	"config-forge/configs"
+	"config-forge/configurator"
 	"testing"
 )
 
 func TestInstanciationConfig(t *testing.T) {
-	config := InstanciationConfig(NAME_TEST, SERVER_NAME_TEST, DOCUMENT_ROOT_TEST)
+	configu := configurator.InstanciationConfig(configs.NAME_TEST, configs.SERVER_NAME_TEST, configs.DOCUMENT_ROOT_TEST)
 
-	if config.name != NAME_FILE_TEST {
-		t.Errorf("The name of the config is %q and need to be %q", config.name, NAME_TEST)
+	if configu.Name != configs.NAME_FILE_TEST {
+		t.Errorf("The name of the config is %q and need to be %q", configu.Name, configs.NAME_TEST)
 	}
 
-	if config.serverName != SERVER_NAME_TEST {
+	if configu.ServerName != configs.SERVER_NAME_TEST {
 		t.Errorf("Error on serverName struct apache")
 	}
 
-	if config.documentRoot != DOCUMENT_ROOT_TEST {
+	if configu.DocumentRoot != configs.DOCUMENT_ROOT_TEST {
 		t.Errorf("Error on documentRoot struct apache")
 	}
 
-	if config.path != APACHE_PATH_REPOSITORY {
+	if configu.Path != configs.APACHE_PATH_REPOSITORY {
 		t.Errorf("Error on documentRoot struct apache")
 	}
 
-	if config.fileContent != APACHE_CONFIG_CONTENT {
+	if configu.FileContent != configs.APACHE_CONFIG_CONTENT {
 		t.Errorf("Error on documentRoot struct apache")
 	}
 }
 
 func TestImplementConfigContent(t *testing.T) {
-	config := Apache{
-		name:         NAME_TEST,
-		serverName:   SERVER_NAME_TEST,
-		documentRoot: DOCUMENT_ROOT_TEST,
-		path:         APACHE_PATH_REPOSITORY,
-		fileContent:  APACHE_CONFIG_CONTENT,
+	configu := configurator.Apache{
+		Name:         configs.NAME_TEST,
+		ServerName:   configs.SERVER_NAME_TEST,
+		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
+		Path:         configs.APACHE_PATH_REPOSITORY,
+		FileContent:  configs.APACHE_CONFIG_CONTENT,
 	}
 
-	config.ImplementConfigContent()
+	configu.ImplementConfigContent()
 
-	if config.fileContent != APACHE_CONFIG_CONTENT_TEST {
-		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", APACHE_CONFIG_CONTENT_TEST, config.fileContent)
+	if configu.FileContent != configs.APACHE_CONFIG_CONTENT_TEST {
+		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_CONTENT_TEST, configu.FileContent)
 	}
 }

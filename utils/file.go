@@ -1,6 +1,9 @@
-package main
+package utils
 
-import "os"
+import (
+	"config-forge/configurator"
+	"os"
+)
 
 func CreateFile(filename string) (*os.File, error) {
 	file, err := os.Create(filename)
@@ -11,14 +14,14 @@ func CreateFile(filename string) (*os.File, error) {
 	return file, nil
 }
 
-func EditFile(apache Apache) error {
-	file, err := CreateFile(apache.name)
+func EditFile(apache configurator.Apache) error {
+	file, err := CreateFile(apache.Name)
 
 	if err != nil {
 		return err
 	}
 
-	_, err = file.WriteString(apache.fileContent)
+	_, err = file.WriteString(apache.FileContent)
 	if err != nil {
 		return err
 	}

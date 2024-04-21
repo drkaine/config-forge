@@ -1,4 +1,4 @@
-package main
+package configs
 
 const (
 	WRONG_CHOICE_ERROR         = "Wrong choice"

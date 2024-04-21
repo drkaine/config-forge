@@ -2,31 +2,33 @@ package main
 
 import (
 	"bytes"
+	"config-forge/configs"
+	"config-forge/utils"
 	"testing"
 )
 
 func TestWrongAnalyseResponse(t *testing.T) {
-	function := AnalyseResponse(BAD_INPUT)
+	function := utils.AnalyseResponse(configs.BAD_INPUT)
 
-	if function != WRONG_CHOICE_RETURN {
-		t.Errorf(GOOD_CHOICE_ERROR)
+	if function != configs.WRONG_CHOICE_RETURN {
+		t.Errorf(configs.GOOD_CHOICE_ERROR)
 	}
 }
 
 func TestGoodAnalyseResponse(t *testing.T) {
-	function := AnalyseResponse(APACHE_INPUT)
+	function := utils.AnalyseResponse(configs.APACHE_INPUT)
 
-	if function != PREPARE_CONFIGURATION_RETURN {
-		t.Errorf(WRONG_CHOICE_ERROR)
+	if function != configs.PREPARE_CONFIGURATION_RETURN {
+		t.Errorf(configs.WRONG_CHOICE_ERROR)
 	}
 }
 
 func TestListeningResponse(t *testing.T) {
-	reader := bytes.NewReader([]byte(APACHE_INPUT))
+	reader := bytes.NewReader([]byte(configs.APACHE_INPUT))
 
-	response := ListeningResponse(reader)
+	response := utils.ListeningResponse(reader)
 
-	if response != APACHE_INPUT {
-		t.Errorf("The response %q isn't the same of the input %q", APACHE_INPUT, response)
+	if response != configs.APACHE_INPUT {
+		t.Errorf("The response %q isn't the same of the input %q", configs.APACHE_INPUT, response)
 	}
 }

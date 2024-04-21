@@ -1,6 +1,6 @@
-package main
+package configs
 
-var configAccepted = []string{
+var ConfigAccepted = []string{
 	"apache",
 	"ngnix",
 }
