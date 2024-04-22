@@ -2,7 +2,7 @@ package configs
 
 var ConfigAccepted = []string{
 	"apache",
-	"ngnix",
+	"nginx",
 }
 
 const (
@@ -28,8 +28,8 @@ const (
 	    ErrorLog ${APACHE_LOG_DIR}/monsite_error.log
 	    CustomLog ${APACHE_LOG_DIR}/monsite_access.log combined
 	</VirtualHost>`
-	NGNIX_PATH_REPOSITORY = "/etc/nginx/sites-available/"
-	NGNIX_CONFIG_CONTENT  = `
+	NGINX_PATH_REPOSITORY = "/etc/nginx/sites-available/"
+	NGINX_CONFIG_CONTENT  = `
 	server {
 
 		server_name ServerNameInput www.ServerNameInput;

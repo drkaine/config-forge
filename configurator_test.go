@@ -13,31 +13,37 @@ func TestInstanciationApache(t *testing.T) {
 		"documentRoot": configs.DOCUMENT_ROOT_TEST,
 	}
 
-	configu := configurator.InstanciationConfig(configs.APACHE_INPUT, informations)
+	configu := configurator.ConfigBuilder(configs.APACHE_INPUT, informations)
 
-	if configu.Name != configs.NAME_FILE_TEST {
-		t.Errorf("The name of the config is %q and need to be %q", configu.Name, configs.NAME_TEST)
+	if configu.GetName() != configs.NAME_FILE_TEST {
+		t.Errorf("The name of the config is %q and need to be %q", configu.GetName(), configs.NAME_TEST)
 	}
 
-	if configu.ServerName != configs.SERVER_NAME_TEST {
-		t.Errorf("Error on serverName struct apache")
-	}
-
-	if configu.DocumentRoot != configs.DOCUMENT_ROOT_TEST {
+	if configu.GetFileContent() != configs.APACHE_CONFIG_CONTENT {
 		t.Errorf("Error on documentRoot struct apache")
 	}
+}
 
-	if configu.Path != configs.APACHE_PATH_REPOSITORY {
-		t.Errorf("Error on documentRoot struct apache")
+func TestInstanciationNginx(t *testing.T) {
+	informations := map[string]string{
+		"name":         configs.NAME_TEST,
+		"serverName":   configs.SERVER_NAME_TEST,
+		"documentRoot": configs.DOCUMENT_ROOT_TEST,
 	}
 
-	if configu.FileContent != configs.APACHE_CONFIG_CONTENT {
+	configu := configurator.ConfigBuilder("nginx", informations)
+
+	if configu.GetName() != configs.NAME_TEST {
+		t.Errorf("The name of the config is %q and need to be %q", configu.GetName(), configs.NAME_TEST)
+	}
+
+	if configu.GetFileContent() != configs.NGINX_CONFIG_CONTENT {
 		t.Errorf("Error on documentRoot struct apache")
 	}
 }
 
 func TestCustomiseApacheConfigContent(t *testing.T) {
-	configu := configurator.Apache{
+	apache := configurator.Apache{
 		Name:         configs.NAME_TEST,
 		ServerName:   configs.SERVER_NAME_TEST,
 		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
@@ -45,25 +51,25 @@ func TestCustomiseApacheConfigContent(t *testing.T) {
 		FileContent:  configs.APACHE_CONFIG_CONTENT,
 	}
 
-	configu.CustomiseConfigContent()
+	content := apache.CustomiseConfigContent()
 
-	if configu.FileContent != configs.APACHE_CONFIG_CONTENT_TEST {
-		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_CONTENT_TEST, configu.FileContent)
+	if content != configs.APACHE_CONFIG_CONTENT_TEST {
+		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_CONTENT_TEST, apache.FileContent)
 	}
 }
 
-func TestCustomiseNgnixConfigContent(t *testing.T) {
-	configu := configurator.Ngnix{
+func TestCustomiseNginxConfigContent(t *testing.T) {
+	nginx := configurator.Nginx{
 		Name:         configs.NAME_TEST,
 		ServerName:   configs.SERVER_NAME_TEST,
 		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
-		Path:         configs.NGNIX_PATH_REPOSITORY,
-		FileContent:  configs.NGNIX_CONFIG_CONTENT,
+		Path:         configs.NGINX_PATH_REPOSITORY,
+		FileContent:  configs.NGINX_CONFIG_CONTENT,
 	}
 
-	configu.CustomiseConfigContent()
+	content := nginx.CustomiseConfigContent()
 
-	if configu.FileContent != configs.NGNIX_CONFIG_CONTENT_TEST {
-		t.Errorf("Error on fileContent struct NGNIX Attendu: %s, Obtenu: %s", configs.NGNIX_CONFIG_CONTENT_TEST, configu.FileContent)
+	if content != configs.NGINX_CONFIG_CONTENT_TEST {
+		t.Errorf("Error on fileContent struct NGINX Attendu: %s, Obtenu: %s", configs.NGINX_CONFIG_CONTENT_TEST, nginx.FileContent)
 	}
 }

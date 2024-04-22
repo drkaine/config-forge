@@ -5,20 +5,32 @@ import (
 	"strings"
 )
 
-func InstanciationConfig(nameTool string, informations map[string]string) Apache {
-	configs := Apache{
-		Name:         informations["name"] + ".conf",
-		ServerName:   informations["serverName"],
-		DocumentRoot: informations["documentRoot"],
-		Path:         configs.APACHE_PATH_REPOSITORY,
-		FileContent:  configs.APACHE_CONFIG_CONTENT,
+func ConfigBuilder(nameTool string, informations map[string]string) interface{ Config } {
+	switch {
+	case nameTool == "apache":
+		return Apache{
+			Name:         informations["name"] + ".conf",
+			ServerName:   informations["serverName"],
+			DocumentRoot: informations["documentRoot"],
+			Path:         configs.APACHE_PATH_REPOSITORY,
+			FileContent:  configs.APACHE_CONFIG_CONTENT,
+		}
+	case nameTool == "nginx":
+		return Nginx{
+			Name:         informations["name"],
+			ServerName:   informations["serverName"],
+			DocumentRoot: informations["documentRoot"],
+			Path:         configs.NGINX_PATH_REPOSITORY,
+			FileContent:  configs.NGINX_CONFIG_CONTENT,
+		}
 	}
-
-	return configs
+	return nil
 }
 
 type Config interface {
-	CustomiseConfigContent(config Config)
+	CustomiseConfigContent() string
+	GetFileContent() string
+	GetName() string
 }
 
 type Apache struct {
@@ -29,13 +41,23 @@ type Apache struct {
 	FileContent  string
 }
 
-func (apache *Apache) CustomiseConfigContent() {
-	apache.FileContent = strings.Replace(apache.FileContent, "ServerNameInput", apache.ServerName, 1)
-	apache.FileContent = strings.Replace(apache.FileContent, "ServerAliasInput", "www."+apache.ServerName, 1)
-	apache.FileContent = strings.Replace(apache.FileContent, "DocumentRootInput", apache.DocumentRoot, 2)
+func (apache Apache) CustomiseConfigContent() string {
+	content := strings.Replace(apache.FileContent, "ServerNameInput", apache.ServerName, 1)
+	content = strings.Replace(content, "ServerAliasInput", "www."+apache.ServerName, 1)
+	content = strings.Replace(content, "DocumentRootInput", apache.DocumentRoot, 2)
+
+	return content
 }
 
-type Ngnix struct {
+func (apache Apache) GetFileContent() string {
+	return apache.FileContent
+}
+
+func (apache Apache) GetName() string {
+	return apache.Name
+}
+
+type Nginx struct {
 	Name         string
 	ServerName   string
 	DocumentRoot string
@@ -43,7 +65,17 @@ type Ngnix struct {
 	FileContent  string
 }
 
-func (ngnix *Ngnix) CustomiseConfigContent() {
-	ngnix.FileContent = strings.Replace(ngnix.FileContent, "ServerNameInput", ngnix.ServerName, 2)
-	ngnix.FileContent = strings.Replace(ngnix.FileContent, "DocumentRootInput", ngnix.DocumentRoot, 1)
+func (nginx Nginx) CustomiseConfigContent() string {
+	content := strings.Replace(nginx.FileContent, "ServerNameInput", nginx.ServerName, 2)
+	content = strings.Replace(content, "DocumentRootInput", nginx.DocumentRoot, 1)
+
+	return content
+}
+
+func (nginx Nginx) GetFileContent() string {
+	return nginx.FileContent
+}
+
+func (nginx Nginx) GetName() string {
+	return nginx.Name
 }

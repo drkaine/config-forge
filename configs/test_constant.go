@@ -24,7 +24,7 @@ const (
 	    ErrorLog ${APACHE_LOG_DIR}/monsite_error.log
 	    CustomLog ${APACHE_LOG_DIR}/monsite_access.log combined
 	</VirtualHost>`
-	NGNIX_CONFIG_CONTENT_TEST = `
+	NGINX_CONFIG_CONTENT_TEST = `
 	server {
 
 		server_name test.net www.test.net;

@@ -15,7 +15,7 @@ func TestEditFile(t *testing.T) {
 		"documentRoot": configs.DOCUMENT_ROOT_TEST,
 	}
 
-	config := configurator.InstanciationConfig(configs.APACHE_INPUT, informations)
+	config := configurator.ConfigBuilder(configs.APACHE_INPUT, informations)
 
 	err := utils.EditFile(config)
 	if err != nil {
@@ -27,18 +27,18 @@ func TestEditFile(t *testing.T) {
 		t.Errorf("The file don't exist : %v", err)
 	}
 
-	content, err := os.ReadFile(config.Name)
+	content, err := os.ReadFile(config.GetName())
 	if err != nil {
 		t.Errorf("Error for read the file : %v", err)
 		return
 	}
 
-	if string(content) != config.FileContent {
-		t.Errorf("File content is incorrect. Wanted: %s, Obtained : %s", config.FileContent, string(content))
+	if string(content) != config.GetFileContent() {
+		t.Errorf("File content is incorrect. Wanted: %s, Obtained : %s", config.GetFileContent(), string(content))
 	}
 
 	defer func() {
-		if err := os.Remove(config.Name); err != nil {
+		if err := os.Remove(config.GetName()); err != nil {
 			t.Errorf("Error on the deletion of the file: %v", err)
 		}
 	}()

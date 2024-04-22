@@ -14,14 +14,14 @@ func createFile(filename string) (*os.File, error) {
 	return file, nil
 }
 
-func EditFile(apache configurator.Apache) error {
-	file, err := createFile(apache.Name)
+func EditFile(config configurator.Config) error {
+	file, err := createFile(config.GetName())
 
 	if err != nil {
 		return err
 	}
 
-	_, err = file.WriteString(apache.FileContent)
+	_, err = file.WriteString(config.GetFileContent())
 	if err != nil {
 		return err
 	}

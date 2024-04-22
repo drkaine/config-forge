@@ -42,10 +42,9 @@ func Execute() {
 		"documentRoot": documentRoot,
 	}
 
-	configu := configurator.InstanciationConfig(toolName, informations)
+	configu := configurator.ConfigBuilder(toolName, informations)
 
 	configu.CustomiseConfigContent()
-	fmt.Println(configu.Name)
 
 	er := utils.EditFile(configu)
 	fmt.Println(er)
