@@ -33,8 +33,8 @@ func TestEditFile(t *testing.T) {
 		return
 	}
 
-	if string(content) != config.GetFileContent() {
-		t.Errorf("File content is incorrect. Wanted: %s, Obtained : %s", config.GetFileContent(), string(content))
+	if string(content) != config.CustomiseConfigContent() {
+		t.Errorf("File content is incorrect. Wanted: %s, Obtained : %s", config.CustomiseConfigContent(), string(content))
 	}
 
 	defer func() {

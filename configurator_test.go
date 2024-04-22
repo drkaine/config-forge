@@ -18,10 +18,6 @@ func TestInstanciationApache(t *testing.T) {
 	if configu.GetName() != configs.NAME_FILE_TEST {
 		t.Errorf("The name of the config is %q and need to be %q", configu.GetName(), configs.NAME_TEST)
 	}
-
-	if configu.GetFileContent() != configs.APACHE_CONFIG_CONTENT {
-		t.Errorf("Error on documentRoot struct apache")
-	}
 }
 
 func TestInstanciationNginx(t *testing.T) {
@@ -35,10 +31,6 @@ func TestInstanciationNginx(t *testing.T) {
 
 	if configu.GetName() != configs.NAME_TEST {
 		t.Errorf("The name of the config is %q and need to be %q", configu.GetName(), configs.NAME_TEST)
-	}
-
-	if configu.GetFileContent() != configs.NGINX_CONFIG_CONTENT {
-		t.Errorf("Error on documentRoot struct apache")
 	}
 }
 

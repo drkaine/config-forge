@@ -29,7 +29,6 @@ func ConfigBuilder(nameTool string, informations map[string]string) interface{ C
 
 type Config interface {
 	CustomiseConfigContent() string
-	GetFileContent() string
 	GetName() string
 }
 
@@ -49,10 +48,6 @@ func (apache Apache) CustomiseConfigContent() string {
 	return content
 }
 
-func (apache Apache) GetFileContent() string {
-	return apache.FileContent
-}
-
 func (apache Apache) GetName() string {
 	return apache.Name
 }
@@ -70,10 +65,6 @@ func (nginx Nginx) CustomiseConfigContent() string {
 	content = strings.Replace(content, "DocumentRootInput", nginx.DocumentRoot, 1)
 
 	return content
-}
-
-func (nginx Nginx) GetFileContent() string {
-	return nginx.FileContent
 }
 
 func (nginx Nginx) GetName() string {

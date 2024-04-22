@@ -41,11 +41,21 @@ func Execute() {
 		"serverName":   serverName,
 		"documentRoot": documentRoot,
 	}
-
 	configu := configurator.ConfigBuilder(toolName, informations)
 
-	configu.CustomiseConfigContent()
-
 	er := utils.EditFile(configu)
-	fmt.Println(er)
+
+	if er != nil {
+		fmt.Println(er)
+	}
+
+	fmt.Println(configs.ASK_CONTINU)
+
+	other := utils.ListeningResponse(os.Stdin)
+
+	if other == "y" || other == "yes" {
+		Execute()
+	}
+
+	fmt.Println(configs.GOODBY_RETURN)
 }

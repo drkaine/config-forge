@@ -21,7 +21,7 @@ func EditFile(config configurator.Config) error {
 		return err
 	}
 
-	_, err = file.WriteString(config.GetFileContent())
+	_, err = file.WriteString(config.CustomiseConfigContent())
 	if err != nil {
 		return err
 	}
