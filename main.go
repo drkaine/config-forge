@@ -16,8 +16,8 @@ func main() {
 func Execute() {
 	fmt.Println(configs.HELLO_RETURN)
 	fmt.Println(strings.Join(configs.ConfigAccepted, " "))
-	answer := utils.ListeningResponse(os.Stdin)
-	analyseChoice := utils.AnalyseChoice(answer)
+	toolName := utils.ListeningResponse(os.Stdin)
+	analyseChoice := utils.AnalyseChoice(toolName)
 	fmt.Println(analyseChoice)
 
 	if analyseChoice == configs.WRONG_CHOICE_RETURN {
@@ -36,7 +36,13 @@ func Execute() {
 
 	documentRoot := utils.ListeningResponse(os.Stdin)
 
-	configu := configurator.InstanciationConfig(name, serverName, documentRoot)
+	informations := map[string]string{
+		"name":         name,
+		"serverName":   serverName,
+		"documentRoot": documentRoot,
+	}
+
+	configu := configurator.InstanciationConfig(toolName, informations)
 
 	configu.CustomiseConfigContent()
 	fmt.Println(configu.Name)

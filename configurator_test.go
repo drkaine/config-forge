@@ -6,8 +6,14 @@ import (
 	"testing"
 )
 
-func TestInstanciationConfig(t *testing.T) {
-	configu := configurator.InstanciationConfig(configs.NAME_TEST, configs.SERVER_NAME_TEST, configs.DOCUMENT_ROOT_TEST)
+func TestInstanciationApache(t *testing.T) {
+	informations := map[string]string{
+		"name":         configs.NAME_TEST,
+		"serverName":   configs.SERVER_NAME_TEST,
+		"documentRoot": configs.DOCUMENT_ROOT_TEST,
+	}
+
+	configu := configurator.InstanciationConfig(configs.APACHE_INPUT, informations)
 
 	if configu.Name != configs.NAME_FILE_TEST {
 		t.Errorf("The name of the config is %q and need to be %q", configu.Name, configs.NAME_TEST)

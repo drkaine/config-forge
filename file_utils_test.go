@@ -9,7 +9,13 @@ import (
 )
 
 func TestEditFile(t *testing.T) {
-	config := configurator.InstanciationConfig(configs.NAME_TEST, configs.SERVER_NAME_TEST, configs.DOCUMENT_ROOT_TEST)
+	informations := map[string]string{
+		"name":         configs.NAME_TEST,
+		"serverName":   configs.SERVER_NAME_TEST,
+		"documentRoot": configs.DOCUMENT_ROOT_TEST,
+	}
+
+	config := configurator.InstanciationConfig(configs.APACHE_INPUT, informations)
 
 	err := utils.EditFile(config)
 	if err != nil {

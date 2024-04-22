@@ -5,11 +5,11 @@ import (
 	"strings"
 )
 
-func InstanciationConfig(name string, serverName string, documentRoot string) Apache {
+func InstanciationConfig(nameTool string, informations map[string]string) Apache {
 	configs := Apache{
-		Name:         name + ".conf",
-		ServerName:   serverName,
-		DocumentRoot: documentRoot,
+		Name:         informations["name"] + ".conf",
+		ServerName:   informations["serverName"],
+		DocumentRoot: informations["documentRoot"],
 		Path:         configs.APACHE_PATH_REPOSITORY,
 		FileContent:  configs.APACHE_CONFIG_CONTENT,
 	}
