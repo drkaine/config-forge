@@ -30,7 +30,7 @@ func TestInstanciationConfig(t *testing.T) {
 	}
 }
 
-func TestCustomiseConfigContent(t *testing.T) {
+func TestCustomiseApacheConfigContent(t *testing.T) {
 	configu := configurator.Apache{
 		Name:         configs.NAME_TEST,
 		ServerName:   configs.SERVER_NAME_TEST,
@@ -43,5 +43,21 @@ func TestCustomiseConfigContent(t *testing.T) {
 
 	if configu.FileContent != configs.APACHE_CONFIG_CONTENT_TEST {
 		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_CONTENT_TEST, configu.FileContent)
+	}
+}
+
+func TestCustomiseNgnixConfigContent(t *testing.T) {
+	configu := configurator.Ngnix{
+		Name:         configs.NAME_TEST,
+		ServerName:   configs.SERVER_NAME_TEST,
+		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
+		Path:         configs.NGNIX_PATH_REPOSITORY,
+		FileContent:  configs.NGNIX_CONFIG_CONTENT,
+	}
+
+	configu.CustomiseConfigContent()
+
+	if configu.FileContent != configs.NGNIX_CONFIG_CONTENT_TEST {
+		t.Errorf("Error on fileContent struct NGNIX Attendu: %s, Obtenu: %s", configs.NGNIX_CONFIG_CONTENT_TEST, configu.FileContent)
 	}
 }
