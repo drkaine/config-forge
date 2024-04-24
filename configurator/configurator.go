@@ -6,8 +6,8 @@ import (
 )
 
 func ConfigBuilder(nameTool string, informations map[string]string) interface{ Config } {
-	switch {
-	case nameTool == "apache":
+	switch nameTool {
+	case "apache":
 		return Apache{
 			Name:         informations["name"] + ".conf",
 			ServerName:   informations["serverName"],
@@ -15,7 +15,7 @@ func ConfigBuilder(nameTool string, informations map[string]string) interface{ C
 			Path:         configs.APACHE_PATH_REPOSITORY,
 			FileContent:  configs.APACHE_CONFIG_CONTENT,
 		}
-	case nameTool == "nginx":
+	case "nginx":
 		return Nginx{
 			Name:         informations["name"],
 			ServerName:   informations["serverName"],

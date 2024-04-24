@@ -10,10 +10,36 @@ import (
 )
 
 func main() {
-	Execute()
+
+	switch len(os.Args) {
+	case 1:
+		executeScript()
+	default:
+		executeCLI()
+	}
 }
 
-func Execute() {
+func executeCLI() {
+	if utils.InArray(os.Args[1], configs.ConfigAccepted) {
+		informations := map[string]string{
+			"name":         os.Args[2],
+			"serverName":   os.Args[3],
+			"documentRoot": os.Args[4],
+		}
+		configu := configurator.ConfigBuilder(os.Args[1], informations)
+
+		er := utils.EditFile(configu)
+
+		if er != nil {
+			fmt.Println(er)
+		}
+
+		fmt.Println("End")
+	}
+	fmt.Println(configs.WRONG_CHOICE_RETURN)
+}
+
+func executeScript() {
 	fmt.Println(configs.HELLO_RETURN)
 	fmt.Println(strings.Join(configs.ConfigAccepted, " "))
 	toolName := utils.ListeningResponse(os.Stdin)
@@ -21,7 +47,7 @@ func Execute() {
 	fmt.Println(analyseChoice)
 
 	if analyseChoice == configs.WRONG_CHOICE_RETURN {
-		Execute()
+		executeScript()
 	}
 
 	fmt.Println(configs.ASK_NAME_FILE)
@@ -54,7 +80,7 @@ func Execute() {
 	other := utils.ListeningResponse(os.Stdin)
 
 	if other == "y" || other == "yes" {
-		Execute()
+		executeScript()
 	}
 
 	fmt.Println(configs.GOODBY_RETURN)
