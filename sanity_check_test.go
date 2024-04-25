@@ -27,6 +27,7 @@ func TestCheckArgumentsWithBadArguments(t *testing.T) {
 		{command: []string{"", "apache", "", "", ""}},
 		{command: []string{"", "apache", "test", "", ""}},
 		{command: []string{"", "apache", "test", "test.test", ""}},
+		{command: []string{"", "apache", "test", "test.test", "dev/test/public", ""}},
 	}
 
 	for _, arguments := range tests {

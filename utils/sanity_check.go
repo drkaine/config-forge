@@ -9,6 +9,10 @@ func CheckArguments(arguments []string) bool {
 		return false
 	}
 
+	if len(arguments) > 5 {
+		return false
+	}
+
 	if len(arguments[2]) == 0 {
 		return false
 	}
