@@ -20,7 +20,7 @@ func main() {
 }
 
 func executeCLI() {
-	if utils.InArray(os.Args[1], configs.ConfigAccepted) {
+	if utils.CheckArguments(os.Args) {
 		informations := map[string]string{
 			"name":         os.Args[2],
 			"serverName":   os.Args[3],
