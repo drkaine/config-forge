@@ -12,6 +12,8 @@ To install the application, you can clone this Git repository to your local mach
 
 ```bash
 git clone https://github.com/your-user/server-config-generator.git
+cd config-forge
+go install
 ```
 
 ## Executable
@@ -19,6 +21,43 @@ git clone https://github.com/your-user/server-config-generator.git
 You can use the build with :
 ```
 ./config-forge
+```
+
+And for rebuild :
+```
+go build
+```
+
+## Run
+
+You can run the application with :
+```
+go run main.go
+```
+
+For run the tests :
+```
+go test
+```
+
+And the linter :
+```
+golangci-lint run
+```
+
+### Arguments
+
+You can run the application with :
+```
+go run main.go toolName fileName serverName documentRoot
+```
+Or :
+```
+./config-forge toolName fileName serverName documentRoot
+```
+By example :
+```
+./config-forge apache test test.test dev/test/public
 ```
 
 ## Contributions
