@@ -52,4 +52,10 @@ const (
 			deny all;
 		}
 	}`
+	MINIMUM_ARGUMENTS_RETURN     = "Need 5 arguments : go run main.go toolName fileName serverName documentRoot and received less"
+	MAXIMUM_ARGUMENTS_RETURN     = "Need 5 arguments : go run main.go toolName fileName serverName documentRoot and received more"
+	MINIMUM_FILE_NAME_RETURN     = "fileName need minimum 2 caracter"
+	MINIMUM_SERVER_NAME_RETURN   = "serverName need minimum 4 caracter"
+	MINIMUM_DOCUMENT_ROOT_RETURN = "documentRoot minimum 2 caracter"
+	SANITY_CHECK_PASSED          = "ok"
 )

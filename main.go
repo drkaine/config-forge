@@ -20,7 +20,8 @@ func main() {
 }
 
 func executeCLI() {
-	if utils.CheckArguments(os.Args) {
+	sanityCheckReturn := utils.CheckArguments(os.Args)
+	if sanityCheckReturn == "ok" {
 		informations := map[string]string{
 			"name":         os.Args[2],
 			"serverName":   os.Args[3],
@@ -36,7 +37,7 @@ func executeCLI() {
 
 		fmt.Println("End")
 	}
-	fmt.Println(configs.WRONG_CHOICE_RETURN)
+	fmt.Println(sanityCheckReturn)
 }
 
 func executeScript() {
