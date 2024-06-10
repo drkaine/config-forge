@@ -17,11 +17,13 @@ func main() {
 	default:
 		executeCLI()
 	}
+
+	fmt.Println(configs.GOODBY_RETURN)
 }
 
 func executeCLI() {
 	sanityCheckReturn := utils.CheckArguments(os.Args)
-	if sanityCheckReturn == "ok" {
+	if sanityCheckReturn == configs.SANITY_CHECK_PASSED {
 		informations := map[string]string{
 			"name":         os.Args[2],
 			"serverName":   os.Args[3],
@@ -34,8 +36,7 @@ func executeCLI() {
 		if er != nil {
 			fmt.Println(er)
 		}
-
-		fmt.Println("End")
+		return
 	}
 	fmt.Println(sanityCheckReturn)
 }
@@ -83,6 +84,4 @@ func executeScript() {
 	if other == "y" || other == "yes" {
 		executeScript()
 	}
-
-	fmt.Println(configs.GOODBY_RETURN)
 }
