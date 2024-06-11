@@ -13,7 +13,7 @@ func ConfigBuilder(nameTool string, informations map[string]string) interface{ C
 			ServerName:   informations["serverName"],
 			DocumentRoot: informations["documentRoot"],
 			Path:         configs.APACHE_PATH_REPOSITORY,
-			FileContent:  configs.APACHE_CONFIG_CONTENT,
+			FileContent:  configs.APACHE_CONFIG_TEMPLATE,
 		}
 	case "nginx":
 		return Nginx{
@@ -21,7 +21,7 @@ func ConfigBuilder(nameTool string, informations map[string]string) interface{ C
 			ServerName:   informations["serverName"],
 			DocumentRoot: informations["documentRoot"],
 			Path:         configs.NGINX_PATH_REPOSITORY,
-			FileContent:  configs.NGINX_CONFIG_CONTENT,
+			FileContent:  configs.NGINX_CONFIG_TEMPLATE,
 		}
 	}
 	return nil

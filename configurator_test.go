@@ -40,13 +40,13 @@ func TestCustomiseApacheConfigContent(t *testing.T) {
 		ServerName:   configs.SERVER_NAME_TEST,
 		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
 		Path:         configs.APACHE_PATH_REPOSITORY,
-		FileContent:  configs.APACHE_CONFIG_CONTENT,
+		FileContent:  configs.APACHE_CONFIG_TEMPLATE,
 	}
 
 	content := apache.CustomiseConfigContent()
 
-	if content != configs.APACHE_CONFIG_CONTENT_TEST {
-		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_CONTENT_TEST, apache.FileContent)
+	if content != configs.APACHE_CONFIG_TEMPLATE_TEST {
+		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_TEMPLATE_TEST, apache.FileContent)
 	}
 }
 
@@ -56,12 +56,12 @@ func TestCustomiseNginxConfigContent(t *testing.T) {
 		ServerName:   configs.SERVER_NAME_TEST,
 		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
 		Path:         configs.NGINX_PATH_REPOSITORY,
-		FileContent:  configs.NGINX_CONFIG_CONTENT,
+		FileContent:  configs.NGINX_CONFIG_TEMPLATE,
 	}
 
 	content := nginx.CustomiseConfigContent()
 
-	if content != configs.NGINX_CONFIG_CONTENT_TEST {
-		t.Errorf("Error on fileContent struct NGINX Attendu: %s, Obtenu: %s", configs.NGINX_CONFIG_CONTENT_TEST, nginx.FileContent)
+	if content != configs.NGINX_CONFIG_TEMPLATE_TEST {
+		t.Errorf("Error on fileContent struct NGINX Attendu: %s, Obtenu: %s", configs.NGINX_CONFIG_TEMPLATE_TEST, nginx.FileContent)
 	}
 }
