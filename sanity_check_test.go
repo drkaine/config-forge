@@ -8,7 +8,8 @@ import (
 
 func TestCheckArgumentsWithGoodArguments(t *testing.T) {
 	arguments := []string{
-		"",
+		"exe/main",
+		"-c",
 		"apache",
 		"test",
 		"test.test",
@@ -27,12 +28,12 @@ func TestCheckArgumentsWithBadArguments(t *testing.T) {
 		command []string
 		wanted  string
 	}{
-		{command: []string{"te", "te", "te", ".te"}},
-		{command: []string{"te", "te", "te", ".te", "t"}},
-		{command: []string{"te", "apache", "te", ".te", "t"}},
-		{command: []string{"te", "apache", "test", ".te", "t"}},
-		{command: []string{"te", "apache", "test", "test.test", "t"}},
-		{command: []string{"te", "apache", "test", "test.test", "dev/test/public", "te"}},
+		{command: []string{"te", "-c", "te", "te", ".te"}},
+		{command: []string{"te", "-c", "te", "te", ".te", "t"}},
+		{command: []string{"te", "-c", "apache", "te", ".te", "t"}},
+		{command: []string{"te", "-c", "apache", "test", ".te", "t"}},
+		{command: []string{"te", "-c", "apache", "test", "test.test", "t"}},
+		{command: []string{"te", "-c", "apache", "test", "test.test", "dev/test/public", "te"}},
 	}
 
 	for _, arguments := range tests {

@@ -49,15 +49,15 @@ golangci-lint run
 
 You can run the application with :
 ```
-go run main.go toolName fileName serverName documentRoot
+go run main.go -c toolName fileName serverName documentRoot
 ```
 Or :
 ```
-./config-forge toolName fileName serverName documentRoot
+./config-forge --cli toolName fileName serverName documentRoot
 ```
 By example :
 ```
-./config-forge apache test test.test dev/test/public
+./config-forge -c apache test test.test dev/test/public
 ```
 
 ## Contributions

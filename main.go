@@ -8,9 +8,10 @@ import (
 )
 
 func main() {
-
-	switch len(os.Args) {
-	case 1:
+	switch os.Args[1] {
+	case "-c":
+		runner.CLI()
+	case "--cli":
 		runner.CLI()
 	default:
 		runner.Prompt()

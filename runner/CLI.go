@@ -12,11 +12,11 @@ func CLI() {
 	sanityCheckReturn := utils.CheckArguments(os.Args)
 	if sanityCheckReturn == configs.SANITY_CHECK_PASSED {
 		informations := map[string]string{
-			"name":         os.Args[2],
-			"serverName":   os.Args[3],
-			"documentRoot": os.Args[4],
+			"name":         os.Args[3],
+			"serverName":   os.Args[4],
+			"documentRoot": os.Args[5],
 		}
-		configu := configurator.ConfigBuilder(os.Args[1], informations)
+		configu := configurator.ConfigBuilder(os.Args[2], informations)
 
 		er := utils.EditFile(configu)
 
