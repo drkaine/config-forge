@@ -35,9 +35,9 @@ You can run the application with :
 go run main.go
 ```
 
-For run the tests :
+For run the tests  (add -v for the verbose mode):
 ```
-go test
+go test ./tests
 ```
 
 And the linter :

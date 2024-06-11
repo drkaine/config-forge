@@ -1,4 +1,4 @@
-package main
+package tests
 
 import (
 	"config-forge/configs"

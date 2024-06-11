@@ -13,6 +13,10 @@ func main() {
 		runner.CLI()
 	case "--cli":
 		runner.CLI()
+	case "-a":
+		runner.API()
+	case "--api":
+		runner.API()
 	default:
 		runner.Prompt()
 	}
