@@ -2,6 +2,7 @@ package configurator
 
 import (
 	"config-forge/configs"
+	"config-forge/templates"
 	"strings"
 )
 
@@ -13,7 +14,7 @@ func ConfigBuilder(nameTool string, informations map[string]string) interface{ C
 			ServerName:   informations["serverName"],
 			DocumentRoot: informations["documentRoot"],
 			Path:         configs.APACHE_PATH_REPOSITORY,
-			FileContent:  configs.APACHE_CONFIG_TEMPLATE,
+			FileContent:  templates.APACHE_CONFIG,
 		}
 	case "nginx":
 		return Nginx{
@@ -21,7 +22,7 @@ func ConfigBuilder(nameTool string, informations map[string]string) interface{ C
 			ServerName:   informations["serverName"],
 			DocumentRoot: informations["documentRoot"],
 			Path:         configs.NGINX_PATH_REPOSITORY,
-			FileContent:  configs.NGINX_CONFIG_TEMPLATE,
+			FileContent:  templates.NGINX_CONFIG,
 		}
 	}
 	return nil

@@ -3,6 +3,7 @@ package tests
 import (
 	"config-forge/configs"
 	"config-forge/configurator"
+	"config-forge/templates"
 	"testing"
 )
 
@@ -40,13 +41,13 @@ func TestCustomiseApacheConfigContent(t *testing.T) {
 		ServerName:   configs.SERVER_NAME_TEST,
 		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
 		Path:         configs.APACHE_PATH_REPOSITORY,
-		FileContent:  configs.APACHE_CONFIG_TEMPLATE,
+		FileContent:  templates.APACHE_CONFIG,
 	}
 
 	content := apache.CustomiseConfigContent()
 
-	if content != configs.APACHE_CONFIG_TEMPLATE_TEST {
-		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", configs.APACHE_CONFIG_TEMPLATE_TEST, apache.FileContent)
+	if content != templates.APACHE_CONFIG_TEST {
+		t.Errorf("Error on fileContent struct apache Attendu: %s, Obtenu: %s", templates.APACHE_CONFIG_TEST, apache.FileContent)
 	}
 }
 
@@ -56,12 +57,12 @@ func TestCustomiseNginxConfigContent(t *testing.T) {
 		ServerName:   configs.SERVER_NAME_TEST,
 		DocumentRoot: configs.DOCUMENT_ROOT_TEST,
 		Path:         configs.NGINX_PATH_REPOSITORY,
-		FileContent:  configs.NGINX_CONFIG_TEMPLATE,
+		FileContent:  templates.NGINX_CONFIG,
 	}
 
 	content := nginx.CustomiseConfigContent()
 
-	if content != configs.NGINX_CONFIG_TEMPLATE_TEST {
-		t.Errorf("Error on fileContent struct NGINX Attendu: %s, Obtenu: %s", configs.NGINX_CONFIG_TEMPLATE_TEST, nginx.FileContent)
+	if content != templates.NGINX_CONFIG_TEST {
+		t.Errorf("Error on fileContent struct NGINX Attendu: %s, Obtenu: %s", templates.NGINX_CONFIG_TEST, nginx.FileContent)
 	}
 }
