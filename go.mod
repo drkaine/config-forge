@@ -1,6 +1,6 @@
 module config-forge
 
-go 1.21.1
+go 1.22.2
 
 require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.4 // indirect
